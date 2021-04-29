@@ -1,9 +1,9 @@
 <template>
   <ElContainer>
-    <ElAside>
+    <ElAside class="h-screen">
       <ElMenu>
         <ElMenuItem>Menu1</ElMenuItem>
-        <ElSubmenu>
+        <ElSubmenu index="0">
           <template #title>
             <span class="iconify"></span>
             <span>SubMenuTitle</span>
@@ -17,7 +17,9 @@
     <ElContainer>
       <ElHeader></ElHeader>
       <ElContainer>
-        <ElMain></ElMain>
+        <ElMain>
+          <i class="el-icon-edit"></i>
+        </ElMain>
         <ElFooter></ElFooter>
       </ElContainer>
     </ElContainer>
@@ -26,12 +28,10 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import { ElContainer, ElMain, ElAside, ElHeader, ElMenu, ElSubmenu, ElMenuItem } from "element-plus";
+  import { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem } from "element-plus";
 
   export default defineComponent({
     name: "Layout",
-    components: { ElContainer, ElMain, ElAside, ElHeader, ElMenu, ElSubmenu, ElMenuItem },
+    components: { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem },
   });
 </script>
-
-<style></style>

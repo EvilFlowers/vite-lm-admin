@@ -1,6 +1,11 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "@/router/index";
+import router, { setupRouter } from "@/router/index";
+import { ElIcon } from "element-plus";
 import "./index.css";
+const app = createApp(App);
 
-createApp(App).use(router).mount("#app");
+app.use(ElIcon);
+setupRouter(app);
+
+app.mount("#app");
