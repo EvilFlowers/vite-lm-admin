@@ -1,8 +1,11 @@
 <template>
   <ElContainer>
-    <ElAside class="h-screen">
-      <ElMenu>
-        <ElMenuItem>Menu1</ElMenuItem>
+    <div class="h-screen" :class="collapse ? 'w-16' : 'w-52'">
+      <ElMenu :collapse="collapse">
+        <ElMenuItem>
+          <i class="el-icon-eleme"></i>
+          <span>Menu1</span>
+        </ElMenuItem>
         <ElSubmenu index="0">
           <template #title>
             <span class="iconify"></span>
@@ -13,9 +16,11 @@
           </ElMenu>
         </ElSubmenu>
       </ElMenu>
-    </ElAside>
+    </div>
     <ElContainer>
-      <ElHeader></ElHeader>
+      <ElHeader>
+        <i class="el-icon-s-fold" @click="collapse = !collapse"></i>
+      </ElHeader>
       <ElContainer>
         <ElMain>
           <i class="el-icon-edit"></i>
@@ -27,11 +32,17 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, ref } from "vue";
   import { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem } from "element-plus";
 
   export default defineComponent({
     name: "Layout",
     components: { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem },
+    setup() {
+      const collapse = ref(false);
+      return {
+        collapse,
+      };
+    },
   });
 </script>
