@@ -8,11 +8,14 @@
         </ElMenuItem>
         <ElSubmenu index="0">
           <template #title>
-            <span class="iconify"></span>
+            <span class="iconify inline-block w-8 h-8" data-icon="la:arrow-circle-up-solid"></span>
             <span>SubMenuTitle</span>
           </template>
           <ElMenu>
-            <ElMenuItem>SubMenu1</ElMenuItem>
+            <ElMenuItem>
+              <span class="iconify" data-icon="system-uicons:browser-alt" data-inline="false"></span>
+              <span>SubMenu1</span>
+            </ElMenuItem>
           </ElMenu>
         </ElSubmenu>
       </ElMenu>

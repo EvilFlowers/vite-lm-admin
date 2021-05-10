@@ -6,7 +6,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended",
+    // "eslint:recommended",
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -19,5 +19,8 @@ module.exports = {
   },
   parser: "vue-eslint-parser",
   plugins: ["vue", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+  },
 };
