@@ -1,4 +1,5 @@
 import { isObject } from "@/utils/is";
+import { RouteLocationNormalized, RouteRecordNormalized } from "vue-router";
 
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
@@ -8,4 +9,16 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
     }
   }
   return src;
+}
+
+export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
+  if (!route) return route;
+  const { matched, ...opt } = route;
+
+  return {
+    ...opt,
+    matched: (matched
+      ? matched.map((item) => ({ meta: item.meta, name: item.name, path: item.path }))
+      : undefined) as RouteRecordNormalized[],
+  };
 }

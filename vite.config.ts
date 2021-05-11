@@ -29,4 +29,13 @@ export default defineConfig({
       },
     ],
   },
+  server: {
+    proxy: {
+      "/admin": {
+        target: "http://106.15.251.89:7777",
+        changeOrigin: true,
+        rewrite: (path) => path.replace("/admin", ""),
+      },
+    },
+  },
 });

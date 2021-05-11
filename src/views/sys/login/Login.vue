@@ -16,13 +16,14 @@
   import { defineComponent, ref, reactive } from "vue";
   import { ElInput, ElButton, ElForm, ElFormItem } from "element-plus";
   import { Encrypt } from "@/utils/crypto";
+  import { login } from "@/api/system/user";
 
   export default defineComponent({
     name: "Login",
     components: { ElInput, ElButton, ElForm, ElFormItem },
     setup() {
       const loginForm = ref(null);
-      const loginInfo = reactive({ username: "", password: "" });
+      const loginInfo = reactive({ username: "systemadmin", password: "administrator" });
       const rules = reactive({
         username: [{ required: true, message: "请输入登录用户名", trigger: "blur" }],
         password: [{ required: true, message: "请输入登录密码", trigger: "blur" }],
@@ -32,9 +33,10 @@
         loginForm.value.validate((valid) => {
           console.log(valid);
           if (valid) {
-            console.log("通过");
+            // console.log("通过");
             const loginData = { ...loginInfo, password: Encrypt(loginInfo.password) };
             console.log(loginData);
+            login(loginData);
           } else {
             console.log("未通过");
           }

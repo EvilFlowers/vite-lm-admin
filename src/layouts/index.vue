@@ -8,22 +8,38 @@
         </ElMenuItem>
         <ElSubmenu index="0">
           <template #title>
-            <span class="iconify inline-block w-8 h-8" data-icon="la:arrow-circle-up-solid"></span>
+            <span class="iconify inline-block w-5 h-5 mr-2" data-icon="la:arrow-circle-up-solid"></span>
             <span>SubMenuTitle</span>
           </template>
-          <ElMenu>
-            <ElMenuItem>
-              <span class="iconify" data-icon="system-uicons:browser-alt" data-inline="false"></span>
-              <span>SubMenu1</span>
-            </ElMenuItem>
-          </ElMenu>
+          <ElMenuItem>
+            <span class="iconify inline-block w-4 h-4" data-icon="system-uicons:browser-alt"></span>
+            <span>SubMenu1</span>
+          </ElMenuItem>
         </ElSubmenu>
       </ElMenu>
     </div>
     <ElContainer>
-      <ElHeader>
-        <i class="el-icon-s-fold" @click="collapse = !collapse"></i>
+      <ElHeader class="flex items-center">
+        <span @click="toggleCollapse">
+          <span v-if="collapse">
+            <span class="iconify w-5 h-5" data-icon="ant-design:menu-unfold-outlined"></span>
+          </span>
+          <span v-else>
+            <span class="iconify w-5 h-5" data-icon="ant-design:menu-fold-outlined"></span>
+          </span>
+        </span>
       </ElHeader>
+      <div>
+        <ElTabs v-model="editableTabsValue" type="card">
+          <ElTabPane
+            v-for="item in editableTabs"
+            :key="item.name"
+            :label="item.title"
+            :name="item.name"
+            closable
+          ></ElTabPane>
+        </ElTabs>
+      </div>
       <ElContainer>
         <ElMain>
           <i class="el-icon-edit"></i>
@@ -36,15 +52,43 @@
 
 <script lang="ts">
   import { defineComponent, ref } from "vue";
-  import { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem } from "element-plus";
+  import {
+    ElContainer,
+    ElMain,
+    ElHeader,
+    ElFooter,
+    ElMenu,
+    ElSubmenu,
+    ElMenuItem,
+    ElTabs,
+    ElTabPane,
+  } from "element-plus";
 
   export default defineComponent({
     name: "Layout",
-    components: { ElContainer, ElMain, ElAside, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem },
+    components: { ElContainer, ElMain, ElHeader, ElFooter, ElMenu, ElSubmenu, ElMenuItem, ElTabs, ElTabPane },
     setup() {
       const collapse = ref(false);
+      function toggleCollapse() {
+        collapse.value = !collapse.value;
+      }
       return {
         collapse,
+        toggleCollapse,
+        editableTabsValue: "2",
+        editableTabs: [
+          {
+            title: "Tab 1",
+            name: "1",
+            content: "Tab 1 content",
+          },
+          {
+            title: "Tab 2",
+            name: "2",
+            content: "Tab 2 content",
+          },
+        ],
+        tabIndex: 2,
       };
     },
   });
