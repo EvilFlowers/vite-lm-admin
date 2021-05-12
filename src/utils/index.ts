@@ -1,5 +1,5 @@
-import { isObject } from "@/utils/is";
 import { RouteLocationNormalized, RouteRecordNormalized } from "vue-router";
+import { isObject } from "lodash-es";
 
 export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   let key: string;
